@@ -1,14 +1,21 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App/App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux'
+import Store from './Redux/Store';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={Store}>
+  <BrowserRouter>
+  <StrictMode>
     <App />
-  </React.StrictMode>,
+  </StrictMode>
+  </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
