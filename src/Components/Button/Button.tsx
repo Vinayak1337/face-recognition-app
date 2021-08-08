@@ -1,8 +1,9 @@
-import { FC } from 'react'
+import { FC } from 'react';
+import './Button.scss';
 
 const Button: FC<ButtonProps> = ({ children, handleButton }) => {
     return (
-        <button onClick={handleButton}>{ children }</button>
+        <button className='button' onClick={handleButton}>{ children }</button>
     )
 }
 

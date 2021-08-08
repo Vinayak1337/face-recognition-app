@@ -1,9 +1,14 @@
+import { FLAGS, setToLocal, setToSession } from "../../Assets/data";
 import { INITIAL_STATE, SET_USER } from "./UserConstants";
 
 export const userReducer = (state = INITIAL_STATE, action: { type: any; payload: any; }) => {
     switch (action.type) {
         case SET_USER: {
-            sessionStorage.setItem('user', JSON.stringify(action.payload));
+
+            try {
+                if (FLAGS.HAS_LOCAL_USER) setToLocal('user', action.payload);
+                setToSession('user', action.payload);
+            } catch (error) {}
 
             return {
                 ...state, user: action.payload

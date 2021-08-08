@@ -14,10 +14,24 @@ interface SignUpState {
     username: string;
     email: string;
     password: string;
+    toRemember: boolean;
     isEmailValid: boolean;
     isUsernameValid: boolean;
     isPasswordValid: boolean;
     isUserValid: boolean;
+    uernameVerified: boolean;
+    emailVerified: boolean;
+    emailErrorMsg: string;
+    passwordOverflow: boolean;
+    passwordStrength: passwordStrength;
+}
+
+type SignUpFetchBody = { username: string } | { email: string; } | { username: string; email: string; password: string };
+
+type passwordStrength = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+
+interface PasswordIndicatorProps {
+    strength: passwordStrength;
 }
 
 interface SignInState {
@@ -54,9 +68,26 @@ interface FetchOptions {
 }
 
 interface FetchOptionHeader {
-    'content-Type': 'application/json';
+    'Content-Type': 'application/json';
 }
 
 interface ButtonProps {
-    handleButton: (event: MouseEventHandler<HTMLButtonElement>) => void;
+    type?: "button" | "submit" | "reset" | undefined;
+    handleButton?: (event: Event<HTMLInputElement>) => void;
+}
+
+interface FormInputProps {
+    id: string;
+    name: string;
+    type: string;
+    value: string;
+    label?: string;
+    required?: boolean;
+    hasError?: boolean;
+    errorMsg?: string;
+    handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+interface SignInProps {
+    setUser: (user: User) => void;
 }

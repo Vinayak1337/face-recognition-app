@@ -1,0 +1,21 @@
+.form {
+	.has-error {
+		margin: 0px;
+	}
+
+	.remember-me {
+		align-items: center;
+		position: relative;
+		top: -22px;
+
+		label {
+			position: relative;
+			top: -2px;
+		}
+	}
+
+	p {
+		font-size: 13px;
+		transition: 5s;
+	}
+}
