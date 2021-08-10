@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import './FormInput.scss'
 
-const FormInput: FC<FormInputProps>= ({ handleChange, label, hasError, errorMsg, ...inputProps }) => {
+const FormInput: FC<FormInputProps>= ({ handleChange, label, hasError = false, errorMsg, ...inputProps }) => {
     return (
         <div className="form">
             <div className={`form-input ${hasError && 'form-error'}`}>

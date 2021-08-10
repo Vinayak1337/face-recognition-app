@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import './Button.scss';
 
-const Button: FC<ButtonProps> = ({ children, handleButton }) => {
+const Button: FC<ButtonProps> = ({ children, handleButton, disabled = false }) => {
     return (
-        <button className='button' onClick={handleButton}>{ children }</button>
+        <button className={`button ${disabled ? 'disabled' : ''}`} onClick={handleButton} disabled={disabled} >{ children }</button>
     )
 }
 

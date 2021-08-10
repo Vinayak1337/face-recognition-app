@@ -19,16 +19,15 @@ interface SignUpState {
     isUsernameValid: boolean;
     isPasswordValid: boolean;
     isUserValid: boolean;
-    uernameVerified: boolean;
-    emailVerified: boolean;
     emailErrorMsg: string;
     passwordOverflow: boolean;
     passwordStrength: passwordStrength;
+    usernameErrorMsg: string;
 }
 
 type SignUpFetchBody = { username: string } | { email: string; } | { username: string; email: string; password: string };
 
-type passwordStrength = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+type passwordStrength = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 interface PasswordIndicatorProps {
     strength: passwordStrength;
@@ -73,6 +72,7 @@ interface FetchOptionHeader {
 
 interface ButtonProps {
     type?: "button" | "submit" | "reset" | undefined;
+    disabled?: boolean;
     handleButton?: (event: Event<HTMLInputElement>) => void;
 }
 

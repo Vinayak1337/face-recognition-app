@@ -3,6 +3,7 @@ import { baseUrl } from '../../Assets/data';
 import Button from '../Button/Button';
 import FormInput from '../FormInput/FormInput';
 import PasswordIndicator from '../PasswordIndicator/PasswordIndicator';
+import './SignUp.scss';
 
 class SignUp extends Component {
     state: SignUpState;
@@ -18,11 +19,10 @@ class SignUp extends Component {
             isEmailValid: true,
             isPasswordValid: true,
             isUserValid: true,
-            uernameVerified: false,
-            emailVerified: false,
             emailErrorMsg: '',
             passwordStrength: 0,
             passwordOverflow: false,
+            usernameErrorMsg: '',
         }
     }
 
@@ -32,59 +32,69 @@ class SignUp extends Component {
     
     handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        this.setState({ [name]: value });
-
-        if (!(name === 'username')) this.checkInputs(name);
+        this.setState({ [name]: value }, this.checkInput(name));
     }
 
-    checkInputs(currentInputName: string) {
-        const { username, email, password, uernameVerified, isUsernameValid, isEmailValid, emailVerified, isPasswordValid } = this.state;
-
-        !uernameVerified && username.length && this.verifyUsername();
-        !isUsernameValid && !username.length && this.setState({ isUsernameValid: true });
-
-        !email.length && !isEmailValid && this.setState({ isEmailValid: true });
-        email.length && !emailVerified && !(currentInputName === 'email') && this.verifyEmail();
-
-        password.length && !isPasswordValid && (currentInputName === 'password') && this.verifyPassword();
-        !password.length && !isPasswordValid && this.setState({ isPasswordValid: true });
+    checkInput = (name: string) => {
+        setTimeout(() => {
+            switch (name) {
+                case 'username': this.verifyUsername(); break;
+                case 'email': this.verifyEmail(); break;
+                case 'password': this.verifyPassword(); break;
+            }
+            return undefined;
+        }, 200);
+        return undefined;
     }
 
     async verifyUsername() {
         const { username } = this.state;
-        if (username.length < 3) return this.setState({ isUsernameValid: false });
+        if (!username.length) return this.setState({ isUsernameValid: true });
+        if (username.length < 3) return this.setState({ isUsernameValid: false, usernameErrorMsg: 'Invalid username' });
 
         const response = await this.fetchApi({ username }, '/verify');
-        if (!(response.status === 200)) {
-            this.setState({ isUsernameValid: false });
-            return this.setState({ usernameVerified: true });
-        }
+        if (!(response.status === 200)) return this.setState({ isUsernameValid: false, usernameErrorMsg: 'Username is already taken!' });
         this.setState({ isUsernameValid: true });
-        return this.setState({ usernameVerified: true });
     }
 
     async verifyEmail() {
         const { email } = this.state;
-        if (!email.includes('@') || !email.endsWith('.com')) return this.setState({ isEmailValid: false });
+        if (!email.length) return this.setState({ isEmailValid: true });
+        if (!email.includes('@') || !email.endsWith('.com')) return this.setState({ isEmailValid: false, emailErrorMsg: 'Invalid email' });
 
         const response = await this.fetchApi({ email }, '/verify');
-        if (!(response.status === 200)) {
-            this.setState({ isEmailValid: false });
-            return this.setState({ emailVerified: true });
-        }
+        if (!(response.status === 200)) return this.setState({ isEmailValid: false, emailErrorMsg: 'Email is already taken!' });
         this.setState({ isEmailValid: true });
-        return this.setState({ emailVerified: true });
     }
 
     verifyPassword() {
+        const { password, isPasswordValid, passwordOverflow } = this.state;
 
+        let strength = 0;
+        
+        if (!password.length) this.setState({ isPasswordValid: true, passwordStrength: strength });
+        if ((password.length >= 6)) strength += 3;
+        if (password.match(/[A-Z]/)) strength += 1;
+        if (password.match(/[a-z]/)) strength += 1;
+        if (password.match(/[0-1]/)) strength += 1;
+        if (password.match(/[@$!%*?&]/)) strength += 2;
+        
+
+        if (strength < 6)  this.setState({ isPasswordValid: false });
+        else if (!isPasswordValid) this.setState({ isPasswordValid: true });
+
+        if (password.length > 12) this.setState({ passwordOverflow: true });
+        else if (passwordOverflow) this.setState({ passwordOverflow: false });
+
+        this.setState({ passwordStrength: strength });
     }
 
     fetchApi(body: SignUpFetchBody, endpoint: '/verify' | '/user/create') {
+
         return fetch(`${baseUrl}${endpoint}`, {
             method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
+            headers: {
+                "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*"
             },
             body: JSON.stringify(body)
@@ -92,21 +102,23 @@ class SignUp extends Component {
     }
 
     render() {
-        const { username, email, password, isUsernameValid, isEmailValid, emailErrorMsg, passwordOverflow, passwordStrength } = this.state;
+        const { username, email, password, isUsernameValid, isEmailValid, emailErrorMsg, passwordOverflow, passwordStrength, isPasswordValid, usernameErrorMsg } = this.state;
         return (
             <form className="form">
                 <h1>Sign Up</h1>
-                <FormInput type="text" name="username" id="username-signUp" label="username" value={username} handleChange={this.handleChange} required hasError={!isUsernameValid} errorMsg="Username is already taken!" />
-                <FormInput type="email" name="email" id="email-signUp" label="email" value={email} handleChange={this.handleChange} required hasError={!isEmailValid} errorMsg={emailErrorMsg} />
-                <FormInput type="password" name="password" id="password-signUp" label="password" value={password} handleChange={this.handleChange} required hasError={passwordOverflow} errorMsg="Password length must be smaller than 16" />
+                <FormInput type="text" name="username" id="username-signUp" label="username" value={username} handleChange={this.handleChange} required hasError={!isUsernameValid} errorMsg={usernameErrorMsg} />
+                <FormInput type="email" name="email" id="email-signUp" label="email" value={email} handleChange={this.handleChange} required hasError={isEmailValid} errorMsg={emailErrorMsg} />
+                <FormInput type="password" name="password" id="password-signUp" label="password" value={password} handleChange={this.handleChange} required hasError={passwordOverflow} errorMsg="Password is greater than 12" />
 
-                { passwordStrength && <PasswordIndicator strength={passwordStrength} />}
+                <div className="indicator">
+                { passwordStrength ? <PasswordIndicator strength={passwordStrength} /> : '' }
+                </div>
 
                 <div className="remember-me">
                 <input type="checkbox" name="checkbox" id="checkbox-signIn" value="remember me" onClick={this.toggleRememberMe} />
                 <label>Remember me</label>
                 </div>
-                <Button type="submit">Sign Up</Button>
+                <Button type="submit" disabled={ !(isUsernameValid && isEmailValid && isPasswordValid && !passwordOverflow) }>Sign Up</Button>
             </form>
         )
     }
