@@ -39,8 +39,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "preview": "serve  build",
-    "deploy-dev": "npm run build && serve build",
+    "dev": "serve  build -p 3000",
+    "build-dev": "npm run build && serve build -p 3000",
     "push": "git add . && git commit -m \"updating project\" && git push"
   },
   "eslintConfig": {

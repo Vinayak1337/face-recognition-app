@@ -111,13 +111,14 @@ class SignUp extends Component {
                 <FormInput type="password" name="password" id="password-signUp" label="password" value={password} handleChange={this.handleChange} required hasError={passwordOverflow} errorMsg="Password is greater than 12" />
 
                 <div className="indicator">
-                { passwordStrength ? <PasswordIndicator strength={passwordStrength} /> : '' }
+                    <PasswordIndicator strength={passwordStrength} />
                 </div>
 
                 <div className="remember-me">
                 <input type="checkbox" name="checkbox" id="checkbox-signIn" value="remember me" onClick={this.toggleRememberMe} />
                 <label>Remember me</label>
                 </div>
+
                 <Button type="submit" disabled={ !(isUsernameValid && isEmailValid && isPasswordValid && !passwordOverflow) }>Sign Up</Button>
             </form>
         )
