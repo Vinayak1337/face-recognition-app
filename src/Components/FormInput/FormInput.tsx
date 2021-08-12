@@ -12,7 +12,7 @@ const FormInput: FC<FormInputProps>= ({ handleChange, label, hasError = false, e
             }
             </div>
             {
-                hasError && <code>{errorMsg}</code>
+                hasError ? <code>{errorMsg}</code> : ''
             }
         </div>
     )

@@ -1,10 +1,16 @@
+:root {
+	--black: #000011;
+	--white: #e8e9eb;
+	--orange: #f06543;
+}
+
 body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 
 	font-family: 'Courier New', Courier, monospace;
-	background-color: #e8e9eb;
+	background-color: var(--white);
 }
 
 code {

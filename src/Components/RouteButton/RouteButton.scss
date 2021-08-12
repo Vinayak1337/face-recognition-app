@@ -1,0 +1,28 @@
+.route-button {
+	display: flex;
+	flex-direction: column;
+
+	h3 {
+		margin-right: 5px;
+		color: var(--black);
+		cursor: pointer;
+	}
+
+	span {
+		position: relative;
+		top: -32%;
+		content: '';
+		height: 2px;
+		transition: 1s;
+		left: 50%;
+		transform: translate(-54%, 0);
+	}
+
+	.active {
+		background: var(--orange);
+	}
+
+	.inactive {
+		background: transparent;
+	}
+}

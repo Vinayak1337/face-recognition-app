@@ -30,6 +30,7 @@ $error-color: #ed4337;
 			border: none;
 			background: none;
 			outline: none;
+			color: var(--black);
 		}
 
 		label {
@@ -50,7 +51,7 @@ $error-color: #ed4337;
 			left: 0;
 			width: 0%;
 			height: 2px;
-			background: $main-color;
+			background: var(--orange);
 			transition: 0.5s;
 		}
 

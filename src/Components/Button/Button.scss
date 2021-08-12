@@ -1,5 +1,3 @@
-$main-color: #e8e9eb;
-
 .button {
 	min-width: 100px;
 	width: auto;
@@ -8,8 +6,8 @@ $main-color: #e8e9eb;
 	line-height: 50px;
 	padding: 0 35px 0 35px;
 	font-size: 15px;
-	background-color: #f06543;
-	color: $main-color;
+	background-color: var(--orange);
+	color: var(--white);
 	text-transform: uppercase;
 	font-family: 'Open Sans Condensed';
 	font-weight: bolder;
@@ -19,20 +17,21 @@ $main-color: #e8e9eb;
 	transition: 1s;
 
 	&:hover {
-		background-color: $main-color;
-		color: black;
-		border: 1px solid black;
+		background-color: var(--white);
+		color: var(--black);
+		border: 1px solid var(--black);
 		transition: 1s;
 	}
 }
 
 .disabled {
-	border: 1px solid black;
-	background-color: rgb(209, 207, 207);
+	border: 1px solid var(--black);
+	background-color: var(--white);
 	color: gray;
+	cursor: default;
 
 	&:hover {
-		background-color: rgb(209, 207, 207);
+		background-color: var(--white);
 		color: gray;
 	}
 }

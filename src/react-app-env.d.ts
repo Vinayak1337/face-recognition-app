@@ -23,6 +23,7 @@ interface SignUpState {
     passwordOverflow: boolean;
     passwordStrength: passwordStrength;
     usernameErrorMsg: string;
+    userErrorMsg: string;
 }
 
 type SignUpFetchBody = { username: string } | { email: string; } | { username: string; email: string; password: string };
@@ -37,6 +38,7 @@ interface SignInState {
     email: string;
     password: string;
     isUserValid: boolean;
+    userErrorMsg: string;
 }
 
 interface InitialUserState {
@@ -57,7 +59,7 @@ interface RootState {
 }
 
 interface UserReducer {
-    user: User;
+    user: User | null;
 }
 
 interface FetchOptions {
@@ -89,5 +91,30 @@ interface FormInputProps {
 }
 
 interface SignInProps {
-    setUser: (user: User) => void;
+    setUser: (user: User | null) => void;
+}
+
+interface SignUpProps {
+    setUser: (user: User | null) => void;
+}
+
+interface NavigatorProps {
+    user: User | null;
+    setUser: (_: null) => void;
+}
+
+interface RouteButtonProps {
+    isActive: boolean;
+    label: string;
+    width: string;
+    link: string;
+    handleClick: () => void;
+}
+
+interface HomeProps {
+    user: User | null;
+}
+
+interface UserRankProps {
+    user: User | null;
 }

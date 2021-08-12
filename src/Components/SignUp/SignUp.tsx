@@ -1,15 +1,20 @@
+import { FormEvent } from 'react';
 import { ChangeEvent, Component } from 'react';
-import { baseUrl } from '../../Assets/data';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { baseUrl, setToLocal } from '../../Assets/data';
+import { setUser } from '../../Redux/User/UserActions';
 import Button from '../Button/Button';
 import FormInput from '../FormInput/FormInput';
 import PasswordIndicator from '../PasswordIndicator/PasswordIndicator';
 import './SignUp.scss';
 
-class SignUp extends Component {
+class SignUp extends Component<SignInProps> {
     state: SignUpState;
-    constructor(props: {} | Readonly<{}>) {
+    constructor(props: SignInProps | Readonly<SignInProps>)
+    {
         super(props);
-        
+
         this.state = {
             username: '',
             email: '',
@@ -23,20 +28,42 @@ class SignUp extends Component {
             passwordStrength: 0,
             passwordOverflow: false,
             usernameErrorMsg: '',
+            userErrorMsg: '',
         }
     }
 
-    toggleRememberMe = () => {
+    toggleRememberMe = () =>
+    {
         this.setState({ toRemember: !this.state.toRemember });
     }
-    
-    handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+
+    handleChange = (event: ChangeEvent<HTMLInputElement>) =>
+    {
         const { name, value } = event.target;
         this.setState({ [name]: value }, this.checkInput(name));
     }
 
-    checkInput = (name: string) => {
-        setTimeout(() => {
+    handleSubmit = async (event: FormEvent<HTMLFormElement>) =>
+    {
+        event.preventDefault();
+
+        const { email, password, username, toRemember } = this.state;
+        const response = await this.fetchApi({ email, username, password }, '/user/create');
+
+        console.log(response.status);
+
+        if (!(response.status === 200)) return this.setState({ isUserValid: false });
+        const user = await response.json() as User;
+        this.props.setUser(user);
+
+        if (!toRemember) return setToLocal('user', null);
+        setToLocal('user', user);
+    }
+
+    checkInput = (name: string) =>
+    {
+        setTimeout(() =>
+        {
             switch (name) {
                 case 'username': this.verifyUsername(); break;
                 case 'email': this.verifyEmail(); break;
@@ -47,40 +74,45 @@ class SignUp extends Component {
         return undefined;
     }
 
-    async verifyUsername() {
+    async verifyUsername()
+    {
         const { username } = this.state;
         if (!username.length) return this.setState({ isUsernameValid: true });
         if (username.length < 3) return this.setState({ isUsernameValid: false, usernameErrorMsg: 'Invalid username' });
+        else this.setState({ isUsernameValid: true, usernameError: '' });
 
         const response = await this.fetchApi({ username }, '/verify');
         if (!(response.status === 200)) return this.setState({ isUsernameValid: false, usernameErrorMsg: 'Username is already taken!' });
         this.setState({ isUsernameValid: true });
     }
 
-    async verifyEmail() {
+    async verifyEmail()
+    {
         const { email } = this.state;
         if (!email.length) return this.setState({ isEmailValid: true });
         if (!email.includes('@') || !email.endsWith('.com')) return this.setState({ isEmailValid: false, emailErrorMsg: 'Invalid email' });
+        else this.setState({ isEmailValid: true, emailErrorMsg: '' });
 
         const response = await this.fetchApi({ email }, '/verify');
         if (!(response.status === 200)) return this.setState({ isEmailValid: false, emailErrorMsg: 'Email is already taken!' });
         this.setState({ isEmailValid: true });
     }
 
-    verifyPassword() {
+    verifyPassword()
+    {
         const { password, isPasswordValid, passwordOverflow } = this.state;
 
         let strength = 0;
-        
-        if (!password.length) this.setState({ isPasswordValid: true, passwordStrength: strength });
+
+        if (!password.length) return this.setState({ isPasswordValid: true, passwordStrength: strength });
         if ((password.length >= 6)) strength += 3;
         if (password.match(/[A-Z]/)) strength += 1;
         if (password.match(/[a-z]/)) strength += 1;
         if (password.match(/[0-1]/)) strength += 1;
         if (password.match(/[@$!%*?&]/)) strength += 2;
-        
 
-        if (strength < 6)  this.setState({ isPasswordValid: false });
+
+        if (strength < 6) this.setState({ isPasswordValid: false });
         else if (!isPasswordValid) this.setState({ isPasswordValid: true });
 
         if (password.length > 12) this.setState({ passwordOverflow: true });
@@ -89,7 +121,8 @@ class SignUp extends Component {
         this.setState({ passwordStrength: strength });
     }
 
-    fetchApi(body: SignUpFetchBody, endpoint: '/verify' | '/user/create') {
+    fetchApi(body: SignUpFetchBody, endpoint: '/verify' | '/user/create')
+    {
 
         return fetch(`${baseUrl}${endpoint}`, {
             method: 'POST',
@@ -101,13 +134,14 @@ class SignUp extends Component {
         });
     }
 
-    render() {
+    render()
+    {
         const { username, email, password, isUsernameValid, isEmailValid, emailErrorMsg, passwordOverflow, passwordStrength, isPasswordValid, usernameErrorMsg } = this.state;
         return (
-            <form className="form">
+            <form className="form" onSubmit={this.handleSubmit}>
                 <h1>Sign Up</h1>
                 <FormInput type="text" name="username" id="username-signUp" label="username" value={username} handleChange={this.handleChange} required hasError={!isUsernameValid} errorMsg={usernameErrorMsg} />
-                <FormInput type="email" name="email" id="email-signUp" label="email" value={email} handleChange={this.handleChange} required hasError={isEmailValid} errorMsg={emailErrorMsg} />
+                <FormInput type="email" name="email" id="email-signUp" label="email" value={email} handleChange={this.handleChange} required hasError={!isEmailValid} errorMsg={emailErrorMsg} />
                 <FormInput type="password" name="password" id="password-signUp" label="password" value={password} handleChange={this.handleChange} required hasError={passwordOverflow} errorMsg="Password is greater than 12" />
 
                 <div className="indicator">
@@ -115,14 +149,18 @@ class SignUp extends Component {
                 </div>
 
                 <div className="remember-me">
-                <input type="checkbox" name="checkbox" id="checkbox-signIn" value="remember me" onClick={this.toggleRememberMe} />
-                <label>Remember me</label>
+                    <input type="checkbox" name="checkbox" id="checkbox-signIn" value="remember me" onClick={this.toggleRememberMe} />
+                    <label>Remember me</label>
                 </div>
 
-                <Button type="submit" disabled={ !(isUsernameValid && isEmailValid && isPasswordValid && !passwordOverflow) }>Sign Up</Button>
+                <Button type="submit" disabled={!(isUsernameValid && isEmailValid && isPasswordValid && !passwordOverflow)}>Sign Up</Button>
             </form>
         )
     }
 }
 
-export default SignUp;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    setUser: (user: User | null) => dispatch(setUser(user))
+});
+
+export default connect(null, mapDispatchToProps)(SignUp);

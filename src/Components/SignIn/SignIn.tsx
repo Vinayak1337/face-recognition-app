@@ -69,7 +69,7 @@ const SignIn: FC<SignInProps> = ({ setUser }) => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    setUser: (user: User) => dispatch(setUser(user))
-  })
+    setUser: (user: User | null) => dispatch(setUser(user))
+});
 
 export default connect(null, mapDispatchToProps)(SignIn);

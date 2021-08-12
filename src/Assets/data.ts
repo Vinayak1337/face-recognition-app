@@ -37,7 +37,7 @@ export const setToSession = (key: string, value: any) => {
 }
 
 export const getFromSession = (key: string, initialValue: any) => {
-    return localStorage.getItem(key) || initialValue;
+    return sessionStorage.getItem(key) || initialValue;
 }
 
 export const FLAGS = {
