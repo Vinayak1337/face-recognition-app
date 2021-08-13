@@ -1,0 +1,13 @@
+$main-color: white;
+
+.profile-container {
+	img {
+		border: 2px solid var(--orange);
+		border-radius: 100%;
+		overflow: hidden;
+		height: 50px;
+		width: 50px;
+		cursor: pointer;
+		background: $main-color;
+	}
+}

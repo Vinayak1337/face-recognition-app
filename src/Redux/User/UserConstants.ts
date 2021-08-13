@@ -13,4 +13,4 @@ const getUser = () => {
     return { user: JSON.parse(user) };
 }
 
-export const INITIAL_STATE: InitialUserState = getUser();
+export const INITIAL_USER_STATE: InitialUserState = getUser();

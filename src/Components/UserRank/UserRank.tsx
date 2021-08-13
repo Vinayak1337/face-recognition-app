@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { connect } from 'react-redux'
+import './UserRank.scss'
 
 const UserRank: FC<UserRankProps> = ({ user }) => {
     return (

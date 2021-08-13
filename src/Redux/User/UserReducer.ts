@@ -1,7 +1,7 @@
 import { FLAGS, setToLocal, setToSession } from "../../Assets/data";
-import { INITIAL_STATE, SET_USER } from "./UserConstants";
+import { INITIAL_USER_STATE, SET_USER } from "./UserConstants";
 
-export const userReducer = (state = INITIAL_STATE, action: { type: any; payload: any; }) => {
+export const userReducer = (state = INITIAL_USER_STATE, action: { type: any; payload: any; }) => {
     switch (action.type) {
         case SET_USER: {
 

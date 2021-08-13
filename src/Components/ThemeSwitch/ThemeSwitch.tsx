@@ -1,31 +1,53 @@
-import { SetStateAction } from 'react';
-import { Dispatch, FC, useState } from 'react';
+import { FC, useEffect, useCallback } from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { ReactComponent as SwitchIconBlack } from '../../Assets/Icons/theme_switch_black.svg';
 import { ReactComponent as SwitchIconWhite } from '../../Assets/Icons/theme_switch_white.svg';
+import { setTheme } from '../../Redux/Theme/ThemeActions';
 import './ThemeSwitch.scss';
 
-const changeTheme = (isWhite: boolean, toogleTheme: Dispatch<SetStateAction<boolean>>) => () => {
-    const root = document.querySelector(':root')! as HTMLHtmlElement;
+const ThemeSwitch: FC<ThemeSwitchProps> = ({ theme, setTheme }) => {
 
-    if (isWhite) {
-        toogleTheme(!isWhite);
-        root.style.setProperty('--white', '#000011');
-        root.style.setProperty('--black', '#e8e9eb');
-        return;
+    const setInitialTheme = useCallback(() => {
+        const root = document.querySelector(':root')! as HTMLHtmlElement;
+
+        switch (theme) {
+            case 'black':
+                root.style.setProperty('--white', '#000011');
+                root.style.setProperty('--black', '#e8e9eb');
+                break;
+            
+            case 'white':
+                root.style.setProperty('--white', '#e8e9eb');
+                root.style.setProperty('--black', '#000011');
+        }
+    }, [theme])
+
+    useEffect(() => {
+        setInitialTheme();
+    }, [setInitialTheme])
+
+    const changeTheme = () => {
+        const root = document.querySelector(':root')! as HTMLHtmlElement;
+
+        switch (theme) {
+            case 'white':
+                setTheme('black');
+                root.style.setProperty('--white', '#000011');
+                root.style.setProperty('--black', '#e8e9eb');
+                break;
+            
+            case 'black':
+                setTheme('white');
+                root.style.setProperty('--white', '#e8e9eb');
+                root.style.setProperty('--black', '#000011');
+        }
     }
 
-    toogleTheme(!isWhite);
-    root.style.setProperty('--white', '#e8e9eb');
-    root.style.setProperty('--black', '#000011');
-}
-
-const ThemeSwitch: FC = () => {
-    const [isWhite, toggleTheme] = useState<boolean>(true);
-
     return (
-        <div className="theme-icon" onClick={changeTheme(isWhite, toggleTheme)}>
+        <div className="theme-icon" onClick={changeTheme}>
             {
-                !isWhite ?
+                theme === 'black' ?
                 <SwitchIconWhite /> :
                 <SwitchIconBlack />
             }
@@ -33,4 +55,13 @@ const ThemeSwitch: FC = () => {
     )
 }
 
-export default ThemeSwitch;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    setTheme: (theme: Theme) => dispatch(setTheme(theme))
+});
+
+const mapStateToProps = (state: RootState) => ({
+    theme: state.themeReducer.theme
+  });
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(ThemeSwitch);

@@ -6,7 +6,7 @@ import { setUser } from '../../Redux/User/UserActions';
 import RouteButton from '../RouteButton/RouteButton';
 import './Navigator.scss';
 
-const Navigator: FC<NavigatorProps & RouteComponentProps> = ({ user, match, history, setUser }) => {
+const Navigator: FC<NavigatorProps & RouteComponentProps> = ({ user, history, setUser }) => {
 
     useEffect(() => {
         const path = history.location.pathname.slice(1);
@@ -25,7 +25,7 @@ const Navigator: FC<NavigatorProps & RouteComponentProps> = ({ user, match, hist
         <div className="navigator">
             <RouteButton isActive={activeRoute === 'profile' ? true : false} label="profile" link="/profile" handleClick={() => setRoute('profile')} width="77px" />
             <RouteButton isActive={activeRoute === 'home' ? true : false} label="home" link="/" handleClick={() => setRoute('home')} width="45px" />
-            <RouteButton isActive={activeRoute === 'signin' ? true : false} label={user ? 'signOut' : 'signIn'} link="/signin" handleClick={() => (user ? setUser(null) : setRoute('signin'))} width={!user ? '69px' : '79px'} />
+            <RouteButton isActive={activeRoute === 'signin' ? true : false} label={user ? 'signout' : 'signin'} link="/signin" handleClick={() => (user ? setUser(null) : setRoute('signin'))} width={!user ? '69px' : '79px'} />
         </div>
     )
 }

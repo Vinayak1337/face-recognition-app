@@ -3,7 +3,7 @@ import { FC } from 'react';
 const Profile: FC = () => {
     return (
         <div>
-            Profile Under Construction
+            Profile Under Constructionnn
         </div>
     )
 }

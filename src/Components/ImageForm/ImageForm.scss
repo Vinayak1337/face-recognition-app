@@ -1,0 +1,51 @@
+.image-form-body {
+	display: flex;
+	justify-content: center;
+
+	.image-form-border {
+		display: flex;
+		border: 3vmax solid var(--orange);
+		border-radius: 2vmax;
+		background: var(--orange);
+
+		input {
+			height: 8.6vh;
+			width: 20rem;
+			border-radius: 0.5rem;
+			padding: 0;
+			margin: 0;
+			outline: none;
+			font-size: 2rem;
+		}
+
+		button {
+			height: 9vh;
+			width: 7rem;
+			border-radius: 0.5rem;
+			padding: 0;
+			margin: 0;
+			font-weight: bold;
+			color: white;
+			background: black;
+			cursor: pointer;
+			transition: background 1s;
+
+			&:hover {
+				background: white;
+				color: black;
+			}
+		}
+
+		@media only screen and (max-device-width: 503px) {
+			input {
+				width: 15rem;
+				height: 8vh;
+			}
+
+			button {
+				width: 5rem;
+				height: 8vh;
+			}
+		}
+	}
+}

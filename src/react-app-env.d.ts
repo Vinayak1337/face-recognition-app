@@ -56,6 +56,11 @@ interface User {
 
 interface RootState {
     userReducer: UserReducer;
+    themeReducer: ThemeReducer;
+}
+
+interface ThemeReducer {
+    theme: Theme;
 }
 
 interface UserReducer {
@@ -117,4 +122,28 @@ interface HomeProps {
 
 interface UserRankProps {
     user: User | null;
+}
+
+interface HeaderProps {
+    user: User | null;
+}
+
+interface ProfileProps {
+    user: User | null;
+}
+
+interface ProfilePopUpProps {
+    user: User | null;
+    theme: Theme;
+}
+
+interface InitialThemeState {
+    theme: Theme;
+}
+
+type Theme = 'black' | 'white';
+
+interface ThemeSwitchProps {
+    theme: Theme;
+    setTheme: (theme: Theme) => void;
 }
