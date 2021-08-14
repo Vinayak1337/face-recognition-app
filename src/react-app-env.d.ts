@@ -135,6 +135,9 @@ interface ProfileProps {
 interface ProfilePopUpProps {
     user: User | null;
     theme: Theme;
+    togglePopup: (value: boolean) => void;
+    setTheme: (theme: Theme) => void;
+    setUser: (user: User | null) => void;
 }
 
 interface InitialThemeState {
