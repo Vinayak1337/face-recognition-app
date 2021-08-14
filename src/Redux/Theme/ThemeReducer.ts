@@ -1,7 +1,7 @@
 import { setToLocal } from "../../Assets/data";
 import { INITIAL__THEME_STATE, SET_THEME } from "./ThemeConstants";
 
-export const themeReducer = (state = INITIAL__THEME_STATE, action: { type: any; payload: any; }) => {
+export const themeReducer = (state = INITIAL__THEME_STATE, action: { type: typeof SET_THEME; payload: Theme; }) => {
     switch (action.type) {
         case SET_THEME: {
             try {

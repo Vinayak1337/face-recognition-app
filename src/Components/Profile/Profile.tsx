@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { FC, MutableRefObject, useRef, useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import ProfilePopUp from '../ProfilePopUp/ProfilePopUp';
@@ -8,21 +8,23 @@ const Profile: FC<ProfileProps> = ({ user }) => {
     const [toShowPopup, togglePopup] = useState<boolean>(false);
     const profileRef = useRef() as MutableRefObject<HTMLDivElement>;
 
-    const handleClickOutside = useCallback((event: any) => {
-        if (profileRef.current && !profileRef.current.contains(event.target) && toShowPopup) {
-            togglePopup(!toShowPopup);
+    useMemo(() => {
+        return toShowPopup
+    }, [toShowPopup])
+
+    const handleClickOutside = useCallback((event: MouseEvent) => {
+        if (!profileRef.current?.contains(event.target as Node) && toShowPopup) {            
+            return togglePopup(!toShowPopup);
           }
     }, [toShowPopup]);
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
-    }, [handleClickOutside]);
+    }, [handleClickOutside, toShowPopup]);
 
     return (
-        <div ref={profileRef} className="profile-container" onClick={() => {
-            togglePopup(!toShowPopup);
-        }}>
-            <img src={user?.avatar} alt={user?.username} />
+        <div ref={profileRef} className="profile-container" >
+            <img src={user?.avatar} alt={user?.username} onClick={() => togglePopup(!toShowPopup)}/>
             { toShowPopup && <ProfilePopUp togglePopup={togglePopup}/> }
         </div>
     )

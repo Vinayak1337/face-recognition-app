@@ -7,7 +7,7 @@ import './Header.scss';
 
 const Header: FC<HeaderProps> = ({ user }) => {
     return (
-        <div className="header">
+        <header className="main-header">
             {
                 user ? 
                 <Profile /> :
@@ -15,7 +15,7 @@ const Header: FC<HeaderProps> = ({ user }) => {
             }
             <Navigator />
             <ThemeSwitch />
-        </div>
+        </header>
     )
 }
 

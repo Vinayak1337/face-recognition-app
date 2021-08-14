@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 const Error: FC = () => {
     return (
-        <div>
+        <div className="error-404">
             404 Not found
         </div>
     )
