@@ -1,0 +1,54 @@
+.message-bar {
+	position: absolute;
+	top: 90%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	.message-bar-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		color: #e8e9eb;
+		padding: 6px 16px;
+		font-size: 0.875rem;
+		font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+		font-weight: 400;
+		line-height: 1.43;
+		border-radius: 4px;
+		border: 1px solid transparent;
+		width: fit-content;
+		white-space: nowrap;
+
+		.main-icon {
+			margin-right: 12px;
+		}
+
+		.close-icon {
+			margin-left: 12px;
+		}
+
+		.icon {
+			fill: #e8e9eb;
+		}
+	}
+
+	.error {
+		border-color: #f44336;
+		background: #f44336;
+	}
+
+	.warning {
+		border-color: #ff9800;
+		background: #ff9800;
+	}
+
+	.info {
+		border-color: #2196f3;
+		background: #2196f3;
+	}
+
+	.success {
+		border-color: #4caf50;
+		background: #4caf50;
+	}
+}

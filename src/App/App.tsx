@@ -2,11 +2,11 @@ import { FC } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
-import Home from '../Pages/Home/Home';
-import Auth from '../Pages/Auth/Auth';
-import Profile from '../Pages/Profile/Profile';
-import Navigator from '../Components/Header/Header';
-import Error from '../Pages/Error/Error';
+import Home from '../Pages/Home';
+import Auth from '../Pages/Auth';
+import Profile from '../Pages/Profile';
+import Navigator from '../Components/Header';
+import Error from '../Pages/Error';
 
 const App: FC<AppProps> = ({ user }) => {
   return (

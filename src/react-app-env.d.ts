@@ -128,15 +128,24 @@ interface HeaderProps {
     user: User | null;
 }
 
-interface ProfileProps {
+interface AvatarProps {
     user: User | null;
 }
 
-interface ProfilePopUpProps {
+interface AvatarPopUpProps {
     user: User | null;
     theme: Theme;
     togglePopup: (value: boolean) => void;
     setTheme: (theme: Theme) => void;
+    setUser: (user: User | null) => void;
+}
+
+interface ProfileProps {
+    user: User | null
+}
+
+interface ProfileAvatar {
+    user: User | null;
     setUser: (user: User | null) => void;
 }
 
@@ -160,6 +169,9 @@ type ImageFormAction = {
 } | {
     type: 'set_face_data';
     payload: FaceData | null;
+} | { 
+    type: 'set_active_boolean';
+    payload: null | 'set_is_url' | 'set_is_image' | 'set_has_input';
 }
 
 interface ImageFormState {
@@ -168,6 +180,13 @@ interface ImageFormState {
     isImage: boolean;
     hasInput: boolean;
     faceData: FaceData | null;
+    activeBoolean: null | 'set_is_url' | 'set_is_image' | 'set_has_input';
+}
+
+interface MessageBarProps {
+    type: 'error' | 'success' | 'warning' | 'info';
+    message: string;
+    handleClose: () => void;
 }
 
 interface FaceData {

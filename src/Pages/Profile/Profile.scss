@@ -1,0 +1,20 @@
+.profile-main-page {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 100%;
+	width: 100%;
+
+	.profile-items {
+		position: relative;
+		top: 30%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: fit-content;
+		color: var(--black);
+		border: 2px solid grey;
+		display: flex;
+		flex-direction: column;
+	}
+}

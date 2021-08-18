@@ -1,0 +1,48 @@
+.profile-avatar-items {
+	border-bottom: 1px solid grey;
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+
+	img {
+		border-radius: 100%;
+		border: 2px solid var(--orange);
+		background: #e8e9eb;
+		padding: 0;
+		height: 150px;
+		width: 150px;
+	}
+
+	button {
+		position: absolute;
+		color: transparent;
+		border-radius: 100%;
+		opacity: 0.3;
+		left: 1%;
+		top: 1%;
+		height: 150px;
+		width: 150px;
+		background: transparent;
+		outline: none;
+		border: none;
+		z-index: 1;
+
+		&:hover {
+			background: grey;
+			opacity: 0.3;
+		}
+	}
+
+	#profile-avatar-upload-icon {
+		position: absolute;
+		top: 45%;
+		left: 45%;
+		fill: transparent;
+	}
+
+	.profile-avatar-progress-bar {
+		position: absolute;
+	}
+}

@@ -1,0 +1,113 @@
+.avatar-popup-container {
+	position: fixed;
+	top: 9%;
+	left: 2%;
+	display: flex;
+	flex-direction: column;
+	border: 2px solid grey;
+	border-radius: 5px;
+	background: var(--white);
+	color: var(--black);
+	z-index: 2;
+
+	.avatar-popup-userinfo {
+		border-bottom: 1px solid grey;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		padding: 8px 16px;
+		color: var(--white);
+
+		.userinfo-container {
+			text-align: center;
+
+			h4 {
+				padding: 2px;
+				margin: 0px 5px;
+				color: var(--black);
+			}
+
+			p {
+				margin: 1px 0px 0px;
+				color: grey;
+			}
+
+			.userinfo-entries {
+				display: flex;
+				flex-direction: row;
+				color: var(--black);
+
+				h5 {
+					margin: 2px 0px 0px;
+				}
+			}
+		}
+
+		img {
+			height: 30px;
+			width: 30px;
+		}
+	}
+
+	.avatar-popup-userinfo-extras {
+		display: flex;
+		flex-direction: column;
+		border-bottom: 1px solid grey;
+		color: var(--black);
+
+		.avatar-popup-userinfo-extra {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+
+			h5 {
+				margin: 2px 0px 0px 2px;
+			}
+
+			p {
+				margin: 2px 0px 0px 2px;
+				color: grey;
+			}
+		}
+	}
+
+	.avatar-popup-user-options {
+		border-bottom: 1px solid grey;
+		display: flex;
+		flex-direction: column;
+		padding: 8px 0px;
+		cursor: pointer;
+
+		.avatar-popup-user-option {
+			display: flex;
+			flex-direction: row;
+			h4 {
+				margin: 3px;
+			}
+			.avatar-popup-user-option-icon {
+				fill: grey;
+				height: 24px;
+				width: 24px;
+				margin-left: 3px;
+			}
+		}
+	}
+
+	.avatar-popup-user-logout {
+		display: flex;
+		flex-direction: row;
+		cursor: pointer;
+
+		.avatar-popup-user-logout-icon {
+			fill: grey;
+			height: 24px;
+			width: 24px;
+			margin-left: 3px;
+		}
+
+		h4 {
+			margin: 3px;
+		}
+	}
+}
