@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, useReducer } from 'react'
 import { baseUrl } from '../../../Assets/data'
-import MessageBar from '../../MessageBar';
+import MessageBar from '../../MessageBar/MessageBar';
 import './ImageForm.scss'
 
 const SET_INPUT = 'set_input';

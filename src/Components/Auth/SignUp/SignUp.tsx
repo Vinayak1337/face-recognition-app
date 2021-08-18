@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { baseUrl, setToLocal } from '../../../Assets/data';
 import { setUser } from '../../../Redux/User/UserActions';
-import Button from '../Button';
-import FormInput from '../FormInput';
-import PasswordIndicator from '../PasswordIndicator';
+import Button from '../Button/Button';
+import FormInput from '../FormInput/FormInput';
+import PasswordIndicator from '../PasswordIndicator/PasswordIndicator';
 import './SignUp.scss';
 
 class SignUp extends Component<SignInProps> {

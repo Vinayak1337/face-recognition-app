@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { connect } from 'react-redux'
-import ProfileAvatar from '../../Components/Profile/ProfileAvatar'
+import ProfileAvatar from '../../Components/Profile/ProfileAvatar/ProfileAvatar'
 import './Profile.scss'
 
 const Profile: FC<ProfileProps> = ({ user }) => {

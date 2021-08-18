@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { connect } from 'react-redux';
-import Navigator from './Navigator';
-import Profile from './Avatar';
-import ThemeSwitch from './ThemeSwitch';
+import Navigator from './Navigator/Navigator';
+import Profile from './Avatar/Avatar';
+import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 import './Header.scss';
 
 const Header: FC<HeaderProps> = ({ user }) => {

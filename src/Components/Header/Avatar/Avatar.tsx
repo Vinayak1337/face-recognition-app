@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { FC, MutableRefObject, useRef, useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import AvatarPopUp from '../AvatarPopUp';
+import AvatarPopUp from '../AvatarPopUp/AvatarPopup';
 import './Avatar.scss'
 
 const Avatar: FC<AvatarProps> = ({ user }) => {

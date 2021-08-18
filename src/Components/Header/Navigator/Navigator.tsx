@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Dispatch } from 'redux';
 import { setUser } from '../../../Redux/User/UserActions';
-import RouteButton from '../RouteButton';
+import RouteButton from '../RouteButton/RouteButton';
 import './Navigator.scss';
 
 const Navigator: FC<NavigatorProps & RouteComponentProps> = ({ user, history, setUser }) => {

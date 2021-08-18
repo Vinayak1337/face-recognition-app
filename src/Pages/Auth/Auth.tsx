@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
-import SignIn from '../../Components/Auth/SignIn';
-import SignUp from '../../Components/Auth/SignUp';
+import SignIn from '../../Components/Auth/SignIn/SignIn';
+import SignUp from '../../Components/Auth/SignUp/SignUp';
 import './Auth.scss';
 
 const Auth: FC = () => {
