@@ -149,6 +149,14 @@ interface ProfileAvatar {
     setUser: (user: User | null) => void;
 }
 
+interface ProfileItemProps {
+    label: string;
+    value: string;
+    type: 'text' | 'email' | 'password';
+    disabled?: boolean;
+    handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
 interface InitialThemeState {
     theme: Theme;
 }

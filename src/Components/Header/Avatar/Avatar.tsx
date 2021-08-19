@@ -1,5 +1,4 @@
-import { useCallback, useMemo } from 'react';
-import { FC, MutableRefObject, useRef, useState, useEffect } from 'react'
+import { FC, MutableRefObject, useRef, useState, useEffect, useCallback, useMemo } from 'react'
 import { connect } from 'react-redux'
 import AvatarPopUp from '../AvatarPopUp/AvatarPopup';
 import './Avatar.scss'

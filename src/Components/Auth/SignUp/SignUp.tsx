@@ -1,5 +1,4 @@
-import { FormEvent } from 'react';
-import { ChangeEvent, Component } from 'react';
+import { FormEvent, ChangeEvent, Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { baseUrl, setToLocal } from '../../../Assets/data';

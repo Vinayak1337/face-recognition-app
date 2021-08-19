@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { ReactComponent as ErrorIcon } from '../../Assets/Icons/error_black.svg'
-import { ReactComponent as WarningIcon } from '../../Assets/Icons/warning_black.svg'
-import { ReactComponent as InfoIcon } from '../../Assets/Icons/info_black.svg'
-import { ReactComponent as SuccessIcon } from '../../Assets/Icons/success_black.svg'
-import { ReactComponent as CloseIcon } from '../../Assets/Icons/close_black.svg'
+import { ReactComponent as ErrorIcon } from '../../../Assets/Icons/error_black.svg'
+import { ReactComponent as WarningIcon } from '../../../Assets/Icons/warning_black.svg'
+import { ReactComponent as InfoIcon } from '../../../Assets/Icons/info_black.svg'
+import { ReactComponent as SuccessIcon } from '../../../Assets/Icons/success_black.svg'
+import { ReactComponent as CloseIcon } from '../../../Assets/Icons/close_black.svg'
 import './MessageBar.scss'
 
 const MessageBar: FC<MessageBarProps> = ({ type, handleClose, message }) => {

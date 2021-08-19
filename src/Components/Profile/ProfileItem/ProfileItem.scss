@@ -1,0 +1,30 @@
+.profile-item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border-bottom: 1px solid grey;
+
+	.profile-item-label {
+		padding: 0px;
+		label {
+			font-weight: 600;
+			padding: 8px;
+		}
+	}
+
+	.profile-item-input {
+		padding: 0px;
+		input {
+			outline: none;
+			padding: 8px;
+			border-top-left-radius: 10px;
+			background: rgb(177, 177, 177);
+			color: var(--black);
+			border: 1px solid black;
+
+			&:disabled {
+				background: grey;
+			}
+		}
+	}
+}

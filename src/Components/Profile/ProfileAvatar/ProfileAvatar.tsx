@@ -48,7 +48,7 @@ const ProfileAvatar: FC<ProfileAvatar> = ({ user, setUser }) => {
         <div className="profile-avatar-items">
             <img src={image || user?.avatar} alt={user?.username} />
             <input ref={fileInputRef} type="file" required accept="image/*" onChange={handleImage} hidden/>
-             <button onClick={() => {
+             <button className="profile-avatar-upload-button" onClick={() => {
                 fileInputRef.current?.click()
              }} onMouseOver={() => {
                 const icon = document.getElementById('profile-avatar-upload-icon')! as (SVGElement & HTMLElement )
