@@ -6,6 +6,18 @@ $main-color: #e8e9eb;
 	height: 50px;
 	width: 50px;
 
+	.MuiSkeleton-circle {
+		position: relative;
+		top: -0.5px;
+		left: -0.5px;
+		width: 51px;
+		height: 51px;
+		border-radius: 100%;
+		background: grey;
+		cursor: default;
+		overflow: hidden;
+	}
+
 	img {
 		position: relative;
 		top: -0.5px;

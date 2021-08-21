@@ -1,6 +1,7 @@
 import { FLAGS, getFromLocal, getFromSession } from "../../Assets/data";
 
-export const SET_USER = 'SET_USER';
+export const SET_USER = 'set_user';
+export const INCREMENR_ENTRIES = 'increment_entries';
 
 const getUser = () => {
     let user = getFromSession('user', null);

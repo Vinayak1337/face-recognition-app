@@ -54,6 +54,14 @@ interface User {
     avatar: string;
 }
 
+type UserActions = {
+    type: 'set_user';
+    payload: User | null;
+} | {
+    type: 'increment_entries';
+    payload: 1;
+}
+
 interface RootState {
     userReducer: UserReducer;
     themeReducer: ThemeReducer;
@@ -142,6 +150,7 @@ interface AvatarPopUpProps {
 
 interface ProfileProps {
     user: User | null
+    setUser: (user: User | null) => void;
 }
 
 type ProfileChangeEventTarget = {
@@ -161,6 +170,7 @@ interface ProfileItemProps {
     type: 'text' | 'email' | 'password';
     disabled?: boolean;
     isLast?: boolean;
+    isValid?: boolean;
     handleChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -202,8 +212,11 @@ type ProfileActions = {
     type: 'set_username' | 'set_new_password' | 'set_current_password';
     payload: string;
 } | {
-    type: 'set_to_save' | 'set_to_change_password';
+    type: 'set_to_save' | 'set_to_change_password' | 'set_has_error' | 'set_is_success' | 'set_popup_to_delete';
     payload: boolean;
+} | {
+    type: 'set_password_strength';
+    payload: number;
 }
 
 interface ProfileState {
@@ -212,6 +225,10 @@ interface ProfileState {
     currentPassword: string;
     toSave: boolean;
     toChangePassword: boolean;
+    passwordStrength: number;
+    hasError: boolean;
+    isSuccess: boolean;
+    popupToDelete: boolean;
 }
 
 interface MessageBarProps {
@@ -224,6 +241,22 @@ interface ProfileButtonProps {
     type: 'save' | 'delete';
     disabled?: boolean;
     handleClick: () => void;
+}
+
+interface ImageFormProps {
+    user: User |  null;
+    incrementEntries: () => void;
+}
+
+interface FaceBox {
+    leftCol: number;
+    rightCol: number;
+    topRow: number;
+    bottomRow: number;
+}
+
+interface ProfileDeletePopupProps {
+    handleClick: (toDelete: boolean) => void;
 }
 
 interface FaceData {

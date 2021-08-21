@@ -2,7 +2,6 @@ import { FC } from 'react';
 import './PasswordIndicator.scss';
 
 const calculateStrength = (strength: number): string => {
-
     if (!strength) return '';
     else if (strength > 7) return 'strong';
     else if (strength > 5) return 'good';

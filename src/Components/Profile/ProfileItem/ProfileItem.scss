@@ -4,7 +4,7 @@
 	flex-direction: row;
 	align-items: center;
 	border-bottom: 2px solid var(--orange);
-	margin: 0px -0.5px;
+	margin: 0px -0.2px;
 
 	.profile-item-label {
 		padding: 0px;
@@ -17,17 +17,22 @@
 	.profile-item-input {
 		padding: 0px;
 		input {
+			position: relative;
 			outline: none;
 			padding: 8px;
 			border-top-left-radius: 10px;
-			background: rgb(177, 177, 177);
+			background: rgb(180, 180, 180);
 			color: var(--black);
 			border: none;
-			margin-bottom: -0.5px;
+			margin-bottom: -0.2px;
 
 			&:disabled {
 				background: grey;
 			}
+		}
+
+		.profile-item-input-weak {
+			background: red;
 		}
 	}
 }

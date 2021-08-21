@@ -9,8 +9,8 @@ import { ReactComponent as SettingsIconWhite } from './settings_white.svg'
 import { ReactComponent as SuccessIconBlack } from './success_black.svg'
 import { ReactComponent as ThemeSwitchIconBlack } from './theme_switch_black.svg'
 import { ReactComponent as ThemeSwitchIconWhite } from './theme_switch_white.svg'
-import { ReactComponent as UploadIconBlack } from './Upload_black.svg'
-import { ReactComponent as WarningIconBlack } from './Warning_black.svg'
+import { ReactComponent as UploadIconBlack } from './upload_black.svg'
+import { ReactComponent as WarningIconBlack } from './warning_black.svg'
 
 export {
     CloseIconBlack,

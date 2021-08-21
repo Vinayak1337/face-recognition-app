@@ -1,5 +1,8 @@
 import { ChangeEvent, FC, useReducer } from 'react'
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { baseUrl } from '../../../Assets/data'
+import { incrementEntries } from '../../../Redux/User/UserActions';
 import MessageBar from '../../Global/MessageBar/MessageBar';
 import './ImageForm.scss'
 
@@ -11,14 +14,8 @@ const SET_INPUT = 'set_input',
     SET_ACTIVE_BOOLEAN = 'set_active_boolean';
 
 type BOOLEANS = typeof SET_IS_URL | typeof SET_IS_IMAGE | typeof SET_HAS_INPUT;
-interface FaceBox {
-    leftCol: number;
-    rightCol: number;
-    topRow: number;
-    bottomRow: number;
-}
 
-const ImageForm: FC = () => {
+const ImageForm: FC<ImageFormProps> = ({ incrementEntries, user }) => {
     const [state, dispatch] = useReducer(stateReducer, {
         input: '',
         isUrl: true,
@@ -50,8 +47,6 @@ const ImageForm: FC = () => {
             rightCol: imageWidth - ( face.right_col * imageWidth),
             bottomRow: imageHeight - (face.bottom_row * imageHeight)
         }))
-
-        console.log(boxes);
 
         return (
             <>
@@ -97,6 +92,19 @@ const ImageForm: FC = () => {
                 type: SET_FACE_DATA,
                 payload: faceData,
             })
+
+            const res3 = await fetch(baseUrl + '/image', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                },
+                body: JSON.stringify({ image: input, id: user?.id })
+            })
+
+            if (res3.status === 200) {
+                incrementEntries()
+            }
         }
     }
 
@@ -166,4 +174,12 @@ function stateReducer(state: ImageFormState, action: ImageFormAction) {
     }
 }
 
-export default ImageForm
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    incrementEntries: () => dispatch(incrementEntries())
+});
+
+const mapStateToProps = (state: RootState) => ({
+    user: state.userReducer.user,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageForm)

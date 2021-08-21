@@ -6,15 +6,17 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { setUser } from '../../../Redux/User/UserActions'
 import './ProfileAvatar.scss'
 import { UploadIconBlack } from '../../../Assets/Icons';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const ProfileAvatar: FC<ProfileAvatar> = ({ user, setUser }) => {
     const fileInputRef = useRef() as MutableRefObject<HTMLInputElement>;
     const [image, setImage] = useState<null | string>(null);
     const [loading, setLoading] = useState<boolean>(false);
+    const [isImageLoading, setImageLoading] = useState<boolean>(true);
 
     const handleImage = async (event: ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
-        if (!files) return setImage(null);
+        if (!files || !files[0]) return setImage(null);
         setLoading(true);
 
         const formData = new FormData();        
@@ -40,13 +42,17 @@ const ProfileAvatar: FC<ProfileAvatar> = ({ user, setUser }) => {
                 avatar: url,
             })
             setLoading(false);
+            setImageLoading(true);
         }
 
     }
 
     return (
         <div className="profile-avatar-items">
-            <img src={image || user?.avatar} alt={user?.username} />
+            <img src={image || user?.avatar} alt={user?.username} onLoad={() => setImageLoading(false)} hidden={isImageLoading} />
+
+            { isImageLoading && <Skeleton variant="circle" width={151} height={150} /> }
+
             <input ref={fileInputRef} type="file" required accept="image/*" onChange={handleImage} hidden/>
              <button className="profile-avatar-upload-button" onClick={() => {
                 fileInputRef.current?.click()

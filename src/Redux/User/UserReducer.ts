@@ -1,10 +1,9 @@
 import { FLAGS, setToLocal, setToSession } from "../../Assets/data";
-import { INITIAL_USER_STATE, SET_USER } from "./UserConstants";
+import { INCREMENR_ENTRIES, INITIAL_USER_STATE, SET_USER } from "./UserConstants";
 
-export const userReducer = (state = INITIAL_USER_STATE, action: { type: typeof SET_USER; payload: User | null; }) => {
+export const userReducer = (state = INITIAL_USER_STATE, action: UserActions) => {
     switch (action.type) {
         case SET_USER: {
-
             try {
                 if (FLAGS.HAS_LOCAL_USER) setToLocal('user', action.payload);
                 setToSession('user', action.payload);
@@ -13,6 +12,18 @@ export const userReducer = (state = INITIAL_USER_STATE, action: { type: typeof S
             return {
                 ...state, user: action.payload
             }
+        }
+
+        case INCREMENR_ENTRIES: {
+            try {
+                const newUser = JSON.parse(JSON.stringify(state.user))
+                newUser.entries += 1
+
+                if (FLAGS.HAS_LOCAL_USER) setToLocal('user', newUser);
+                setToSession('user', newUser);
+            } catch (error) {}
+
+            return { ...state, user: { ...state.user, entries: state.user?.entries || 0 + action.payload}}
         }
 
         default: return  state;

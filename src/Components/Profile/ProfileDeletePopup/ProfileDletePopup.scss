@@ -1,0 +1,54 @@
+.profile-delete-popup {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 2px solid var(--orange);
+	border-radius: 20px;
+	width: 350px;
+	background: var(--white);
+	color: var(--black);
+	z-index: 10;
+
+	.profile-delete-text {
+		margin: 10px;
+		text-align: center;
+		p {
+			font-weight: 600;
+		}
+	}
+
+	.profile-delete-buttons {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+
+		button {
+			margin: 10px;
+			border: 1px solid var(--white);
+			border-radius: 10px;
+			color: var(--black);
+			width: 50px;
+			height: 25px;
+			outline: none;
+			transition: background 1s;
+
+			&:first-child {
+				background: rgb(0, 255, 0);
+			}
+
+			&:last-child {
+				background: red;
+			}
+
+			&:hover {
+				color: var(--white);
+				background: var(--black);
+				transition: 1s;
+			}
+		}
+	}
+}
