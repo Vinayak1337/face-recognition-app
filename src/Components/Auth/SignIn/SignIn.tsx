@@ -2,10 +2,9 @@ import { ChangeEvent, FC, useState, FormEvent } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { baseUrl, setToLocal } from '../../../Assets/data';
-import Button from '../Button/Button';
-import FormInput from '../FormInput/FormInput';
 import './SignIn.scss'
 import { setUser } from '../../../Redux/User/UserActions';
+import { Button, FormInput } from '..';
 
 const SignIn: FC<SignInProps> = ({ setUser }) => {
     const [email, setEmail] = useState<string>('');

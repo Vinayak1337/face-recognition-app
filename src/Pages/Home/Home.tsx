@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { connect } from 'react-redux';
-import ImageForm from '../../Components/Home/ImageForm/ImagwForm';
-import UserRank from '../../Components/Home/UserRank/UserRank';
+import { ImageForm, UserRank } from '../../Components/Home';
 import './Home.scss'
 
 const Home: FC<HomeProps> = ({ user }) => {

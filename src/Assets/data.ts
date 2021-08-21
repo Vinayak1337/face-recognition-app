@@ -65,5 +65,5 @@ export function useLocalStorage<A>(key: string, initialValue: A) {
 }
 
 export const useLogger = (...args: any) => {
-    useEffect(() => console.log(args.join(',')), [args]);
+    useEffect(() => console.log(args), [args]);
 }

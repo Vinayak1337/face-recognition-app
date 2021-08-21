@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import { connect } from 'react-redux';
-import Navigator from './Navigator/Navigator';
-import Profile from './Avatar/Avatar';
-import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
+import { Avatar, Navigator, ThemeSwitch } from '.';
 import './Header.scss';
 
 const Header: FC<HeaderProps> = ({ user }) => {
@@ -10,7 +8,7 @@ const Header: FC<HeaderProps> = ({ user }) => {
         <header className="main-header">
             {
                 user ? 
-                <Profile /> :
+                <Avatar /> :
                 <span></span>
             }
             <Navigator />

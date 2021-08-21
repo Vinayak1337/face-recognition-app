@@ -144,6 +144,11 @@ interface ProfileProps {
     user: User | null
 }
 
+type ProfileChangeEventTarget = {
+    name:  'set_username' | 'set_new_password' | 'set_current_password';
+    value: string;
+};
+
 interface ProfileAvatar {
     user: User | null;
     setUser: (user: User | null) => void;
@@ -151,10 +156,12 @@ interface ProfileAvatar {
 
 interface ProfileItemProps {
     label: string;
-    value: string;
+    name: string;
+    value: string | number;
     type: 'text' | 'email' | 'password';
     disabled?: boolean;
-    handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    isLast?: boolean;
+    handleChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface InitialThemeState {
@@ -191,10 +198,32 @@ interface ImageFormState {
     activeBoolean: null | 'set_is_url' | 'set_is_image' | 'set_has_input';
 }
 
+type ProfileActions = {
+    type: 'set_username' | 'set_new_password' | 'set_current_password';
+    payload: string;
+} | {
+    type: 'set_to_save' | 'set_to_change_password';
+    payload: boolean;
+}
+
+interface ProfileState {
+    username: string;
+    newPassword: string;
+    currentPassword: string;
+    toSave: boolean;
+    toChangePassword: boolean;
+}
+
 interface MessageBarProps {
     type: 'error' | 'success' | 'warning' | 'info';
     message: string;
     handleClose: () => void;
+}
+
+interface ProfileButtonProps {
+    type: 'save' | 'delete';
+    disabled?: boolean;
+    handleClick: () => void;
 }
 
 interface FaceData {

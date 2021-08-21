@@ -4,14 +4,14 @@
 	left: 2%;
 	display: flex;
 	flex-direction: column;
-	border: 2px solid grey;
+	border: 2px solid var(--orange);
 	border-radius: 5px;
 	background: var(--white);
 	color: var(--black);
 	z-index: 2;
 
 	.avatar-popup-userinfo {
-		border-bottom: 1px solid grey;
+		border-bottom: 1px solid var(--orange);
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -54,7 +54,7 @@
 	.avatar-popup-userinfo-extras {
 		display: flex;
 		flex-direction: column;
-		border-bottom: 1px solid grey;
+		border-bottom: 1px solid var(--orange);
 		color: var(--black);
 
 		.avatar-popup-userinfo-extra {
@@ -74,7 +74,7 @@
 	}
 
 	.avatar-popup-user-options {
-		border-bottom: 1px solid grey;
+		border-bottom: 1px solid var(--orange);
 		display: flex;
 		flex-direction: column;
 		padding: 8px 0px;

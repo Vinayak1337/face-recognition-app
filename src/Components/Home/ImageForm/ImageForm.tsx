@@ -3,12 +3,12 @@ import { baseUrl } from '../../../Assets/data'
 import MessageBar from '../../Global/MessageBar/MessageBar';
 import './ImageForm.scss'
 
-const SET_INPUT = 'set_input';
-const SET_IS_URL = 'set_is_url';
-const SET_IS_IMAGE = 'set_is_image';
-const SET_FACE_DATA = 'set_face_data';
-const SET_HAS_INPUT = 'set_has_input';
-const SET_ACTIVE_BOOLEAN = 'set_active_boolean';
+const SET_INPUT = 'set_input',
+    SET_IS_URL = 'set_is_url',
+    SET_IS_IMAGE = 'set_is_image',
+    SET_FACE_DATA = 'set_face_data',
+    SET_HAS_INPUT = 'set_has_input',
+    SET_ACTIVE_BOOLEAN = 'set_active_boolean';
 
 type BOOLEANS = typeof SET_IS_URL | typeof SET_IS_IMAGE | typeof SET_HAS_INPUT;
 interface FaceBox {

@@ -6,6 +6,7 @@
 		margin-right: 5px;
 		color: var(--black);
 		cursor: pointer;
+		transition: color 1s ease-in-out;
 	}
 
 	span {
@@ -16,6 +17,11 @@
 		transition: 1s;
 		left: 50%;
 		transform: translate(-54%, 0);
+	}
+
+	.active-text {
+		color: var(--orange);
+		transition: color 1s ease-in-out;
 	}
 
 	.active {

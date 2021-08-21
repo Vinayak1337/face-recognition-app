@@ -1,8 +1,10 @@
 .profile-item {
 	display: flex;
+	justify-content: space-between;
 	flex-direction: row;
 	align-items: center;
-	border-bottom: 1px solid grey;
+	border-bottom: 2px solid var(--orange);
+	margin: 0px -0.5px;
 
 	.profile-item-label {
 		padding: 0px;
@@ -20,11 +22,22 @@
 			border-top-left-radius: 10px;
 			background: rgb(177, 177, 177);
 			color: var(--black);
-			border: 1px solid black;
+			border: none;
+			margin-bottom: -0.5px;
 
 			&:disabled {
 				background: grey;
 			}
+		}
+	}
+}
+
+.profile-item-last {
+	border: none;
+
+	.profile-item-input {
+		input {
+			border-end-end-radius: 6px;
 		}
 	}
 }

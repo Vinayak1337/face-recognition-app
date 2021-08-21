@@ -1,15 +1,12 @@
 import { FC, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import { ReactComponent as SettingsBlack } from '../../../Assets/Icons/settings_black.svg'
-import { ReactComponent as HomeBlack } from '../../../Assets/Icons/home_black.svg'
-import { ReactComponent as LogoutBlack } from '../../../Assets/Icons/logout_black.svg'
-import { ReactComponent as ThemeBlack } from '../../../Assets/Icons/theme_switch_black.svg'
 import './AvatarPopUp.scss'
 import { Dispatch } from 'redux'
 import { setTheme } from '../../../Redux/Theme/ThemeActions'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { setUser } from '../../../Redux/User/UserActions'
+import { SettingsIconBlack, HomeIconBlack, ThemeSwitchIconBlack, LogoutIconBlack } from '../../../Assets/Icons'
 
 const AvatarPopUp: FC<AvatarPopUpProps & RouteComponentProps> = ({ user, theme, setTheme, history, togglePopup, setUser }) => {
     const [path, setPath] = useState<string>(history.location.pathname);
@@ -22,7 +19,7 @@ const AvatarPopUp: FC<AvatarPopUpProps & RouteComponentProps> = ({ user, theme, 
         if (path.endsWith('/')) {
             return (
             <div className="avatar-popup-user-option" onClick={handleOptions('profile')}>
-                <SettingsBlack className="avatar-popup-user-option-icon"/>
+                <SettingsIconBlack className="avatar-popup-user-option-icon"/>
                 <h4>Settings</h4>
             </div>
             )
@@ -30,7 +27,7 @@ const AvatarPopUp: FC<AvatarPopUpProps & RouteComponentProps> = ({ user, theme, 
         else if (path.endsWith('profile')) {
             return (
             <div className="avatar-popup-user-option" onClick={handleOptions('home')}>
-                <HomeBlack className="avatar-popup-user-option-icon"/>
+                <HomeIconBlack className="avatar-popup-user-option-icon"/>
                 <h4>Home</h4>
             </div>
             )
@@ -39,11 +36,11 @@ const AvatarPopUp: FC<AvatarPopUpProps & RouteComponentProps> = ({ user, theme, 
         return (
             <>
                 <div className="avatar-popup-user-option" onClick={handleOptions('profile')}>
-                    <SettingsBlack className="avatar-popup-user-option-icon"/>
+                    <SettingsIconBlack className="avatar-popup-user-option-icon"/>
                     <h4>Settings</h4>
                 </div>
                 <div className="avatar-popup-user-option" onClick={handleOptions('home')}>
-                    <HomeBlack className="avatar-popup-user-option-icon"/>
+                    <HomeIconBlack className="avatar-popup-user-option-icon"/>
                     <h4>Home</h4>
                 </div>
             </>
@@ -89,7 +86,7 @@ const AvatarPopUp: FC<AvatarPopUpProps & RouteComponentProps> = ({ user, theme, 
                     setTheme('black')
                     togglePopup(false);
                 }}>
-                    <ThemeBlack className="avatar-popup-user-option-icon"/>
+                    <ThemeSwitchIconBlack className="avatar-popup-user-option-icon"/>
                     <h4>Switch Theme</h4>
                 </div>
                 
@@ -98,7 +95,7 @@ const AvatarPopUp: FC<AvatarPopUpProps & RouteComponentProps> = ({ user, theme, 
                 togglePopup(false);
                 setUser(null);
             }}>
-                <LogoutBlack className="avatar-popup-user-logout-icon"/>
+                <LogoutIconBlack className="avatar-popup-user-logout-icon"/>
                 <h4>Signout</h4>
             </div>
         </div>

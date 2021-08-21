@@ -1,5 +1,5 @@
 .profile-avatar-items {
-	border-bottom: 2px solid grey;
+	border-bottom: 2.5px solid var(--orange);
 	display: flex;
 	flex-direction: row;
 	position: relative;
@@ -14,10 +14,11 @@
 		background: #e8e9eb;
 		padding: 0;
 		height: 150px;
-		width: 150px;
+		width: 151px;
 	}
 
 	.profile-avatar-upload-button {
+		cursor: pointer;
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -33,7 +34,7 @@
 		z-index: 1;
 
 		&:hover {
-			background: grey;
+			background: #eca797;
 			opacity: 0.3;
 		}
 	}

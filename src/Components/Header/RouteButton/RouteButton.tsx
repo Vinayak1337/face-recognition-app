@@ -5,7 +5,7 @@ import './RouteButton.scss'
 const RouteButton: FC<RouteButtonProps & RouteComponentProps> = ({ isActive, label, handleClick, width, link, history, match  }) => {
     return (
         <div className="route-button">
-            <h3 onClick={() => {
+            <h3 className={isActive ? 'active-text' : ''} onClick={() => {
                 history.push(`${link}`)
                 handleClick()
                 }}>{ label.charAt(0).toUpperCase() + label.slice(1) }</h3>

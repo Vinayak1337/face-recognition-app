@@ -2,10 +2,10 @@ import { ChangeEvent, FC, MutableRefObject, useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { baseUrl } from '../../../Assets/data'
-import { ReactComponent as UploadIcon } from '../../../Assets/Icons/upload_black.svg'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { setUser } from '../../../Redux/User/UserActions'
 import './ProfileAvatar.scss'
+import { UploadIconBlack } from '../../../Assets/Icons';
 
 const ProfileAvatar: FC<ProfileAvatar> = ({ user, setUser }) => {
     const fileInputRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -57,7 +57,7 @@ const ProfileAvatar: FC<ProfileAvatar> = ({ user, setUser }) => {
                 const icon = document.getElementById('profile-avatar-upload-icon')! as (SVGElement & HTMLElement )
                 icon.style.fill = 'transparent';
              }}></button>
-            <UploadIcon id="profile-avatar-upload-icon" />
+            <UploadIconBlack id="profile-avatar-upload-icon" />
             {loading &&  <CircularProgress className="profile-avatar-progress-bar" /> }
         </div>
     )

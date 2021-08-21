@@ -1,8 +1,7 @@
 import { FC, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { ReactComponent as SwitchIconBlack } from '../../../Assets/Icons/theme_switch_black.svg';
-import { ReactComponent as SwitchIconWhite } from '../../../Assets/Icons/theme_switch_white.svg';
+import { ThemeSwitchIconWhite, ThemeSwitchIconBlack } from '../../../Assets/Icons';
 import { setTheme } from '../../../Redux/Theme/ThemeActions';
 import './ThemeSwitch.scss';
 
@@ -48,8 +47,8 @@ const ThemeSwitch: FC<ThemeSwitchProps> = ({ theme, setTheme }) => {
         <div className="theme-icon" onClick={changeTheme}>
             {
                 theme === 'black' ?
-                <SwitchIconWhite /> :
-                <SwitchIconBlack />
+                <ThemeSwitchIconWhite /> :
+                <ThemeSwitchIconBlack />
             }
         </div>
     )

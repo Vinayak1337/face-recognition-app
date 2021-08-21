@@ -2,8 +2,8 @@ import { FC, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Dispatch } from 'redux';
+import { RouteButton } from '..';
 import { setUser } from '../../../Redux/User/UserActions';
-import RouteButton from '../RouteButton/RouteButton';
 import './Navigator.scss';
 
 const Navigator: FC<NavigatorProps & RouteComponentProps> = ({ user, history, setUser }) => {
