@@ -2,4 +2,4 @@
 
 For showcase of my skills
 
-[main page](https://vinayak1337.github.io/face-recognition-app)
+[main page](https://face-recognition-webapp.netlify.app)

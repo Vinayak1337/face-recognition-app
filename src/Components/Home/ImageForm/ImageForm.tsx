@@ -133,6 +133,9 @@ const ImageForm: FC<ImageFormProps> = ({ incrementEntries, user }) => {
                         type: SET_INPUT,
                         payload: event.target.value
                     })
+                    if (state.faceData) {
+                        dispatch({ type: SET_FACE_DATA, payload: null })
+                    }
                 }} />
                 <button type="button" onClick={handleSubmit}>DETECT</button>
             </div>
