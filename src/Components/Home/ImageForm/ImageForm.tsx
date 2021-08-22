@@ -74,8 +74,6 @@ const ImageForm: FC<ImageFormProps> = ({ incrementEntries, user }) => {
 
         if (!input.length) return toggleState(SET_HAS_INPUT);
 
-        if (!['.jpeg', '.jpg', '.png'].some(val => input.includes(val))) return toggleState(SET_IS_IMAGE);
-
         const res2 = await fetch(baseUrl + '/fetchimage', {
             method: 'POST',
             headers: {
@@ -105,7 +103,11 @@ const ImageForm: FC<ImageFormProps> = ({ incrementEntries, user }) => {
             if (res3.status === 200) {
                 incrementEntries()
             }
+
+            return;
         }
+
+        if (res2.status === 500) toggleState(SET_IS_IMAGE);
     }
 
     const toggleState = (stateType: BOOLEANS) => {

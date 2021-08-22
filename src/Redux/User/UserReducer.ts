@@ -15,15 +15,15 @@ export const userReducer = (state = INITIAL_USER_STATE, action: UserActions) => 
         }
 
         case INCREMENR_ENTRIES: {
+            const newUser = JSON.parse(JSON.stringify(state.user))
+            newUser.entries += 1
             try {
-                const newUser = JSON.parse(JSON.stringify(state.user))
-                newUser.entries += 1
 
                 if (FLAGS.HAS_LOCAL_USER) setToLocal('user', newUser);
                 setToSession('user', newUser);
             } catch (error) {}
 
-            return { ...state, user: { ...state.user, entries: state.user?.entries || 0 + action.payload}}
+            return { ...state, user: { ...newUser}}
         }
 
         default: return  state;
