@@ -72,5 +72,17 @@
     "@types/react-router-dom": "^5.1.8",
     "@types/redux-logger": "^3.0.9",
     "@types/redux-react-session": "^2.6.0"
-  }
+  },
+  "description": "A react app which can detect human faces.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vinayak1337/face-recognition-app.git"
+  },
+  "author": "Vinayak1337",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vinayak1337/face-recognition-app/issues"
+  },
+  "homepage": "https://github.com/Vinayak1337/face-recognition-app"
 }
