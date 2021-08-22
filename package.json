@@ -79,7 +79,7 @@
     "url": "git+https://github.com/Vinayak1337/face-recognition-app.git"
   },
   "author": "Vinayak1337",
-  "homepage": "https://vinayak1337.github.io/face-recognition-app/",
+  "homepage": "https://face-recognition-webapp.netlify.app",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Vinayak1337/face-recognition-app/issues"
