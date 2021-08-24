@@ -175,7 +175,7 @@ const Profile: FC<ProfileProps> = ({ user, setUser }) => {
             return
         }
 
-        const res = await fetch(baseUrl + '/user/update', {
+        const res = await fetch(baseUrl + '/user/delete', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
