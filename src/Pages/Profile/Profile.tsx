@@ -175,8 +175,6 @@ const Profile: FC<ProfileProps> = ({ user, setUser }) => {
             return
         }
 
-        console.log(user?.id);
-
         const res = await fetch(baseUrl + '/user/delete', {
             method: 'DELETE',
             headers: {
