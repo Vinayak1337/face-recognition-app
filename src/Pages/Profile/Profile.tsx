@@ -175,8 +175,10 @@ const Profile: FC<ProfileProps> = ({ user, setUser }) => {
             return
         }
 
+        console.log(user?.id);
+
         const res = await fetch(baseUrl + '/user/delete', {
-            method: 'PUT',
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
