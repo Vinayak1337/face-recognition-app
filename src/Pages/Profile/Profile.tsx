@@ -193,6 +193,7 @@ const Profile: FC<ProfileProps> = ({ user, setUser }) => {
 
     return (
         <div className="profile-main-page">
+            <div className="profile-content">
             <div className="profile-items">
                 <ProfileAvatar />
                 <ProfileItem name={SET_USERNAME} type="text" label="Username" value={state.username} handleChange={handleChange}/>
@@ -205,6 +206,7 @@ const Profile: FC<ProfileProps> = ({ user, setUser }) => {
             <div className="profile-buttons">
                 <ProfileButton type="delete" handleClick={() => dispatch({ type: SET_POPUP_TO_DELETE, payload: true })} >Delete Account</ProfileButton>
                 <ProfileButton type="save" handleClick={handleSave} disabled={!state.toSave}>Save</ProfileButton>
+            </div>
             </div>
 
             { state.hasError && <MessageBar handleClose={() => dispatch({
