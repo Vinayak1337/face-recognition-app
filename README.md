@@ -1,10 +1,11 @@
 # Face Recognition App
 
-For showcase of my skills
-
 [main page](https://face-recognition-webapp.netlify.app)
 
-This project is made in React, with libraries like react-router-dom, redux, react-redux.
-It is mainly written in typescript (tsx) & scss.
+A Single page application which is also a progressive web app written in React, typescript & sass.
+Which mimics like a multi-page application but works as spa & provide maximum performance.
 
-And it's a progressive web app.
+Used packages
+ - React Hooks & Custom hooks
+ - react-router-dom
+ - redux
