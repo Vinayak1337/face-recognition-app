@@ -30,6 +30,7 @@ A progressive web application built using React, TypeScript, and Sass. This sing
 2. Navigate to the project directory: `cd face-recognition-app`
 3. Install dependencies: `npm install`
 4. Start the app: `npm start`
+5. Change the base URL at `src/Assets/data.ts#L3` after hosting the server repository locally.
 
 ## Server Repository
 The backend server handles data processing and storage. While it's currently not live, you can access the code and setup instructions [here](https://github.com/Vinayak1337/face-recognition-server).
