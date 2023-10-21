@@ -48,7 +48,7 @@
     "build-dev": "npm run build && serve build -p 3000",
     "push": "git add . && git commit -m \"updating project\" && git push",
     "predeploy": "npm run build",
-    "deploy": "netlify deploy --prod"
+    "deploy": "netlify deploy && netlify deploy --prod"
   },
   "eslintConfig": {
     "extends": [
